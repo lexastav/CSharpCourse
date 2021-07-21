@@ -8,7 +8,7 @@ namespace CSharpCourse
     {
         static void Main(string[] args)
         {
-
+            
         }
         static void HomeWork3()
         {

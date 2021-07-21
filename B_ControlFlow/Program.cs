@@ -6,12 +6,19 @@ namespace B_ControlFlow
     {
         static void Main(string[] args)
         {
+            
+            
+        }
+        static void HomeworkAuth()
+        {
             string login = "johnsilver";
             string password = "qwerty";
             string inputLogin = string.Empty;
             string inputPassword = string.Empty;
             int count = 0;
-            for (int i = 0; i <= 3; i++)
+
+
+            while (count <= 4)
             {
                 Console.Write("Enter Login: ");
                 inputLogin = Console.ReadLine();
@@ -19,20 +26,25 @@ namespace B_ControlFlow
                 Console.Write("Enter Password: ");
                 inputPassword = Console.ReadLine();
                 count++;
-                if (inputLogin == login && inputPassword == password && count <= 3)
+                if (count <= 3)
                 {
-                    Console.WriteLine("Enter the System");
-                    break;
+                    if (inputLogin == login && inputPassword == password)
+                    {
+                        Console.WriteLine("Enter the System");
+                        break;
+                    }
+                    else if (inputLogin != login || inputPassword != password)
+                    {
+                        Console.WriteLine($"Попыток осталось: {3 - count}");
+                        continue;
+                    }
                 }
-                else if (inputLogin != login || inputPassword != password && count <= 3)
-                {
-                    Console.WriteLine($"Попыток осталось: {3 - count}");
-                    continue;
-                }
-                else if (inputLogin != login || inputPassword != password && count >= 3)
+                else
                 {
                     Console.WriteLine("The number of available tries have been exceeded");
+                    break;
                 }
+
             }
         }
         static void HomeworkFactorial()
