@@ -6,7 +6,188 @@ namespace B_ControlFlow
     {
         static void Main(string[] args)
         {
-            
+            string login = "johnsilver";
+            string password = "qwerty";
+            string inputLogin = string.Empty;
+            string inputPassword = string.Empty;
+            int count = 0;
+            for (int i = 0; i <= 3; i++)
+            {
+                Console.Write("Enter Login: ");
+                inputLogin = Console.ReadLine();
+                Console.WriteLine();
+                Console.Write("Enter Password: ");
+                inputPassword = Console.ReadLine();
+                count++;
+                if (inputLogin == login && inputPassword == password && count <= 3)
+                {
+                    Console.WriteLine("Enter the System");
+                    break;
+                }
+                else if (inputLogin != login || inputPassword != password && count <= 3)
+                {
+                    Console.WriteLine($"Попыток осталось: {3 - count}");
+                    continue;
+                }
+                else if (inputLogin != login || inputPassword != password && count >= 3)
+                {
+                    Console.WriteLine("The number of available tries have been exceeded");
+                }
+            }
+        }
+        static void HomeworkFactorial()
+        {
+            int num = int.Parse(Console.ReadLine());
+            long factorial = 1;
+            for (int i = 1; i <= num; i++)
+            {
+                factorial *= i;
+            }
+            Console.WriteLine(factorial);
+        }
+        static void HomeworkAverage()
+        {
+            int numb;
+            int count = 0;
+            double total = 0;
+            int countOfMultiplesOfThree = 0;
+            double average;
+            for (int i = 0; count < 10; i++)
+            {
+                numb = int.Parse(Console.ReadLine());
+                count++;
+                if (numb != 0)
+                {
+                    if (numb % 3 == 0 && numb > 0)
+                    {
+                        total += numb;
+                        countOfMultiplesOfThree++;
+                    }
+                }
+                else
+                {
+                    break;
+                }
+            }
+            average = total / countOfMultiplesOfThree;
+            Console.WriteLine(average);
+        }
+        static void HomeworkFibonacci()
+        {
+            Console.WriteLine("сколько чисел Фибоначчи Вы хотите сгенерировать");
+            int countFib = int.Parse(Console.ReadLine());
+            int fib1 = 1;
+            int fib2 = 1;
+            int[] lstFib = new int[countFib];
+            lstFib[0] = fib1;
+            lstFib[1] = fib2;
+
+
+            for (int i = 2; i < countFib; i++)
+            {
+                int fib = fib1 + fib2;
+                lstFib[i] = fib;
+
+                fib1 = fib2;
+                fib2 = fib;
+            }
+
+            foreach (int f in lstFib)
+            {
+                Console.Write(f + " ");
+            }
+        }
+        static void Debuging()
+        {
+            Console.WriteLine("Введите сторону A");
+            double a = GetDouble();
+            Console.WriteLine("Введите сторону B");
+            double b = GetDouble();
+            Console.WriteLine("Введите сторону C");
+            double c = GetDouble();
+
+            double p = (a + b + c) / 2;
+            double s = Math.Sqrt(p * (p - a) * (p - b) * (p - c));
+
+            Console.WriteLine($"Площадь треугольника равна: {s}");
+        }
+        static double GetDouble()
+        {
+            return double.Parse(Console.ReadLine());
+        }
+        static void SwichCase()
+        {
+            int month = int.Parse(Console.ReadLine());
+
+            string season = string.Empty;
+
+            switch (month)
+            {
+                case 1:
+                case 2:
+                case 12:
+                    season = "Winter";
+                    break;
+                case 3:
+                case 4:
+                case 5:
+                    season = "Spring";
+                    break;
+                case 6:
+                case 7:
+                case 8:
+                    season = "Summer";
+                    break;
+                case 9:
+                case 10:
+                case 11:
+                    season = "Autumn";
+                    break;
+                default:
+                    throw new ArgumentException("There is no such month");
+
+
+            }
+            Console.WriteLine(season);
+
+
+
+            Console.ReadLine();
+
+            int weddingYears = int.Parse(Console.ReadLine());
+
+            string name = string.Empty;
+
+            switch (weddingYears)
+            {
+                case 5:
+                    name = "Деревянная свадьба";
+                    break;
+
+                case 10:
+                    name = "Оловянная свадьба";
+                    break;
+
+                case 15:
+                    name = "Хрустальная свадьба";
+                    break;
+
+                case 20:
+                    name = "Фарфоровая свадьба";
+                    break;
+
+                case 25:
+                    name = "Серебренная свадьба";
+                    break;
+
+                case 30:
+                    name = "Жемчужная свадьба";
+                    break;
+                default:
+                    name = "Не знаем такого юбилея";
+                    break;
+            }
+            Console.WriteLine(name);
         }
         static void BreakContinue()
         {
