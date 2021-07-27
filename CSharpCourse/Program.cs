@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading;
 
@@ -9,6 +11,23 @@ namespace CSharpCourse
         static void Main(string[] args)
         {
             
+
+        }
+        static void TryParse()
+        {
+            // иногда нам бывает нужна защита от дурака, например если мы просим что бы пользователь что-то ввел с клавиатуры,
+            // нужно обезопасить себя от некорректного ввода,  даьы этот дебил не закрашил систему. Один из вариантов- использовать TryParse
+            Console.WriteLine("Enter a number, please.");
+
+            bool wasParsed = int.TryParse(Console.ReadLine(), out int number); // out указывает на выходной аргумент
+            if (wasParsed)
+            {
+                Console.WriteLine(number);
+            }
+            else
+            {
+                Console.WriteLine("Дебил! Введи нормально!");
+            }
         }
         static void HomeWork3()
         {
