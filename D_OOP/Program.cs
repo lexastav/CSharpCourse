@@ -9,9 +9,52 @@ namespace D_OOP
         static void Main(string[] args)
         {
             
-            
 
+        }
+        static void RepresenativeProblemDemo()
+        {
+            Rect rect = new Rect { Height = 2, Width = 5 };
+            int rectArea = AreaCalculator.CalcSquare(rect);
+            Console.WriteLine($"Rect area = {rectArea}");
 
+            // хоба вот и проблема представителя
+            Rect square = new Square { Height = 2, Width = 10 };
+        }
+        static void ExtansionMethodsDemo()
+        {
+            IBaseCollection collection = new BaseList(4);
+            collection.Add(1);
+
+            List<object> list = new List<object>() { 1, 2, 3 };
+            collection.AddRange(list);
+        }
+        static void PolymorphismDemo()
+        {
+            // мы не можем созать просто экземпляр Shape, но мы можем создать массив shapes например из 2х элементов
+            Shape[] shapes = new Shape[2];
+            // создадим 2 фигуры
+            shapes[0] = new Triangle(10, 20, 30);
+            shapes[1] = new Rectangle(5, 10);
+
+            // а теперь поработаем с созданными фигурами
+            foreach (Shape shape in shapes)
+            {
+                shape.Draw();
+                Console.WriteLine(shape.Perimeter());
+
+            }
+
+            // вот в этом и есть вся фишка полиморфизма, то есть мы можем создать где-либо какой нибудь метотд, передав в него в нашем случае
+            // просто shape и не важно что там, Triangle или Rectangle, он проведет с ним какую либо работу. То есть мы работаем с базовым классом
+            // полиморфно.
+            // static void Do(Shape shape) 
+            // {
+            // }
+        }
+        static void InheritenceDemo()
+        {
+            ModelXTerminal terminal = new ModelXTerminal("1234");
+            terminal.Connect();
         }
         static void BoxingUnboxing()
         {
@@ -36,7 +79,7 @@ namespace D_OOP
             // Однако если у нас есть некий метод, который принимает object в качестве аргументов, мы все таки можем узнать типы принимаемых.
             // см. метод Do()
         }
-        static void Do(object obj) 
+        static void Do(object obj)
         {
             // на примере PointRef
             bool isPointRef = obj is PointRef;
@@ -181,9 +224,9 @@ namespace D_OOP
                 Console.WriteLine("Failed to divide");
             }
         }
-        static void ProtectedAtributesDemo() 
+        static void ProtectedAtributesDemo()
         {
-            Character ch = new Character();
+            Character ch = new Character(Race.Elf);
             Console.WriteLine(ch.Health);
             ch.Hit(20);
             Console.WriteLine(ch.Health);
