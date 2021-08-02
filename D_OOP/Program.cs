@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace D_OOP
 {
@@ -9,7 +10,45 @@ namespace D_OOP
         static void Main(string[] args)
         {
             
+        }
+        static void MyStackDemo()
+        {
+            MyStack ms = new MyStack();
+            ms.Push(1);
+            ms.Push(2);
+            ms.Push(3);
 
+            Console.WriteLine(ms.Peek());
+
+            ms.Pop();
+
+            Console.WriteLine(ms.Peek());
+
+            ms.Push(3);
+            ms.Push(4);
+            ms.Push(5);
+
+            Console.WriteLine(ms.Peek());
+
+            Console.ReadLine();
+
+            // ну а теперь самая проблема objectoв
+
+            ms.Push("abraaa");
+            ms.Push(false);
+            ms.Push('a');
+            ms.Push(0.2);
+            ms.Push(new Character(Race.Elf));
+
+            // то есть мы можем напихать туда абсолютно всего (прям как в пайтон). И это может произойти совершенно непреднамеренно.
+            // а вот если нам нужно с данными поработать, например так:
+            while (ms.Count != 0)
+            {
+                Console.WriteLine((int)ms.Peek());
+                ms.Pop();
+            }
+            // все нормально вроде, компилятор не ругается, однако в рантайме вывалится InvalidCastException
+            // и вот именно эту проблему решают обобщения. То есть строгая типизация.
         }
         static void RepresenativeProblemDemo()
         {
