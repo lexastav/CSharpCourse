@@ -10,9 +10,11 @@ namespace CSharpCourse
     {
         static void Main(string[] args)
         {
-            
+
 
         }
+
+
         static void TryParse()
         {
             // иногда нам бывает нужна защита от дурака, например если мы просим что бы пользователь что-то ввел с клавиатуры,
@@ -125,7 +127,7 @@ namespace CSharpCourse
             char last = s1[s1.Length - 1];
 
             Console.WriteLine($"First - {first}. Last - {last}");
-        }          
+        }
         static void MathDemo()
         {
             Console.WriteLine(Math.Pow(2, 3));
@@ -506,4 +508,7 @@ namespace CSharpCourse
             //Console.WriteLine(c);
         }
     }
+
+
+
 }

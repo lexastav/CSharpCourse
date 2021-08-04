@@ -9,7 +9,91 @@ namespace D_OOP
 
         static void Main(string[] args)
         {
+            var ms = new IEnumerableMyStack2<int>();
+            ms.Push(2);
+            ms.Push(3);
+            ms.Push(3);
+            ms.Push(4);
+            ms.Push(5);
+
             
+            foreach (var item in ms)
+            {
+                Console.WriteLine(item);
+            }
+            // все работает
+
+
+        }
+        static void IEnumerableMyStackDemo()
+        {
+            // а вот тут мы теперь обязаны передать тип
+            var ms = new IEnumerableMyStack<int>();
+            ms.Push(2);
+            ms.Push(3);
+            ms.Push(3);
+            ms.Push(4);
+            ms.Push(5);
+
+            // вот с помощью модификации с использование IEnumerable мы можем теперь юзать foreach
+            foreach (var item in ms)
+            {
+                Console.WriteLine(item);
+            }
+            // это эквивалентно следующему:
+            var enumerator = ms.GetEnumerator();
+            while (enumerator.MoveNext())
+            {
+                Console.WriteLine(enumerator.Current);
+            }
+
+            // вот это вот еще один пример крутости интерфейсов. То есть мы с помощью интерфейса заключили так сказать контракт
+            // с конструкцией foreach, по которому мы как бы сказали: "Вот смотри, по нашему стеку тоже можно итерироваться", а foreach
+            // такой: "О да я вижу, что ты реализовал IEnumerable, я буду с тодой работать"
+
+            // однако есть еще более простой способ реализации IEnumerable, который в большинстве случаев то же будет работать
+
+        }
+        static void GeneralizedMyStackDemo()
+        {
+            // а вот тут мы теперь обязаны передать тип
+            var ms = new GeneralizedMyStack<int>();
+            ms.Push(1);
+            ms.Push(2);
+            ms.Push(3);
+
+            Console.WriteLine(ms.Peek());
+
+            ms.Pop();
+
+            Console.WriteLine(ms.Peek());
+
+            ms.Push(3);
+            ms.Push(4);
+            ms.Push(5);
+
+            Console.WriteLine(ms.Peek());
+
+            Console.ReadLine();
+
+            // и положить в него всякую дичь теперь нельзя, если мы указали тип int то там может быть только этот тип.
+            // Компилятор нам это подсветит, так как управление типом происходит в копайл тайме. вот за этим и нужны дженерики.
+
+            //ms.Push("abraaa");
+            //ms.Push(false);
+
+            ms.Push('a'); // а это можно положить, так как char- это структура, и стэк конвертирует его в целочисленную репрезентацию,
+                          // но в реальной практике такое не надо передавать 
+                          //ms.Push(0.2);
+                          //ms.Push(new Character(Race.Elf));
+
+            while (ms.Count != 0)
+            {
+                Console.WriteLine(ms.Peek());
+                ms.Pop();
+            }
+            // Но в этом стэке есть еще проблемка. Дело в том, что пройтись по стэку с помощью foreach мы не можем, выскочит исключение
+            // исправить эту недоработку можно несколькими способами, самый простой- с помощью интерфейса iEnumerable
         }
         static void MyStackDemo()
         {
