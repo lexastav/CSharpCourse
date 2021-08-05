@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Semaphore
@@ -13,42 +10,55 @@ namespace Semaphore
     {
         static LightsForm form;
 
-    
+        const double LightDuration = 1;
+        const double BlinkDuration = 0.25;
+        const int BlinkCount = 5;
+
         static void Wait(double timeInSeconds)
         {
             Thread.Sleep((int)(timeInSeconds * 1000));
         }
-
-        static void Control()
+        static void LightOn(Lights color)
         {
-            Wait(1);
-            while (true)
+            form.LightOn((int)color);
+        }
+        static void LightOff(Lights color)
+        {
+            form.LightOff((int)color);
+        }
+        static void Blink()
+        {
+            for (int i = 0; i <= BlinkCount; i++)
             {
-                form.LightOn(0);
-                Wait(1);
-                form.LightOn(1);
-                Wait(1);
-                form.LightOff(0);
-                form.LightOff(1);
-                form.LightOn(2);
-                Wait(1);
-
-                
-                for (int i = 0; i < 5; i++)
-                {
-                    form.LightOff(2);
-                    Wait(0.25);
-                    form.LightOn(2);
-                    Wait(0.25);
-                }
-
-                form.LightOff(2);
-                form.LightOn(1);
-                Wait(1);
-                form.LightOff(1);
+                LightOn(Lights.Green);
+                Wait(BlinkDuration);
+                LightOff(Lights.Green);
+                Wait(BlinkDuration);
             }
         }
-
+        static void SwitchTo(Lights color)
+        {
+            LightOff(Lights.Red);
+            LightOff(Lights.Yellow);
+            LightOff(Lights.Green);
+            LightOn(color);
+        }
+        static void Control()
+        {
+            Wait(LightDuration);
+            while (true)
+            {
+                SwitchTo(Lights.Red);
+                Wait(LightDuration);
+                LightOn(Lights.Yellow);
+                Wait(LightDuration);
+                SwitchTo(Lights.Green);
+                Wait(LightDuration);
+                Blink();
+                SwitchTo(Lights.Yellow);
+                Wait(LightDuration);
+            }
+        }     
         public class LightsForm : Form
         {
             bool[] lights = new bool[3];
@@ -95,5 +105,7 @@ namespace Semaphore
                 Application.Run(form);
             }
         }
+        
     }
+    
 }
