@@ -6,8 +6,9 @@ namespace Slide01
 	{
 		static void Main()
 		{
-			
-		}
+		
+        }
+
 		private static string GetMinX(int a, int b, int c)
 		{
 
