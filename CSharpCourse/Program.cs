@@ -417,6 +417,28 @@ namespace CSharpCourse
             Console.WriteLine(xStr);
             Console.WriteLine(x);
         }
+        static void RightComparison()
+        {
+            double x = 1.0 / 10;
+            double sum = 0;
+            for (int i = 0; i < 10; i++)
+                sum += x;
+            Console.WriteLine(Math.Abs(sum - 1) < 1e-9);
+            //Здесь мы проверяем, что числа равны не в точности, но что модуль их разности меньше некоторого маленького числа.
+            //Всегда используйте такую конструкцию при сравнении чисел с плавающей точкой.
+        }
+        static void WrongComparison()
+        {
+            // в бинарном виде 0.1 представляется бесконечной дробью 0.00011001100...,
+            // в типах данных float и double хранится только начало этой дроби,
+            // поэтому число 0.1 представляется с погрешностью. 
+            double x = 1.0 / 10;
+            double sum = 0;
+            for (int i = 0; i < 10; i++)
+                sum += x;
+            Console.WriteLine(sum == 1);
+            // это выведет нам false, хотя мы ожидаем true
+        }
         static void ComparisonOperators()
         {
             int x = 1;

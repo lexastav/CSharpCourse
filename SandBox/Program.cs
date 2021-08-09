@@ -6,14 +6,9 @@ namespace Slide01
 	{
 		static void Main()
 		{
-			
-            
-		}
-		public static double Calculate(string userInput)
-        {
-			var enteredData = userInput.Split(" ");
-			return double.Parse(enteredData[0]) * Math.Pow((1.0 + ((double.Parse(enteredData[1]) / 100) / 12)), double.Parse(enteredData[2]));
-        } 
+		
+        }
+
 		private static string GetMinX(int a, int b, int c)
 		{
 
