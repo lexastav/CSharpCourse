@@ -7,7 +7,52 @@ namespace Slide01
 		static void Main()
 		{
 
-
+		}
+		private static void WriteBoard(int size)
+        {
+			int count = 1;
+			string blackCell = "#";
+			string whiteCell = ".";
+			for (int i = 1; i <= size; i++)
+			{
+				for (int j = 0; j < size; j++)
+				{
+					WriteCell(i, j, whiteCell, blackCell);
+				}
+				Console.WriteLine();
+				count++;
+			}
+		}
+		private static void WriteCell(int counterLine, int counterCell, string whiteCell, string blackCell)
+        {
+			if (counterLine % 2 == 0)
+			{
+				if (counterCell % 2 == 0) Console.Write(whiteCell);
+				else Console.Write(blackCell);
+			}
+			else
+			{
+				if (counterCell % 2 == 0) Console.Write(blackCell);
+				else Console.Write(whiteCell);
+			}
+		}
+		private static void WriteTextWithBorder(string text)
+        {
+			string newText = $"| {text} |";
+			int lengthBorder = newText.Length - 2;		
+			WriteBorder(lengthBorder);
+			Console.WriteLine(newText);
+			WriteBorder(lengthBorder);
+		}
+		private static void WriteBorder(int lengthBorder)
+        {
+			Console.Write("+");
+			for (int i = 0; i < lengthBorder; i++)
+			{
+				Console.Write("-");
+			}
+			Console.Write("+");
+			Console.WriteLine();
 		}
 		static string RemoveWhiteSpace(string text)
         {
