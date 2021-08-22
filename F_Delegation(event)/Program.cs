@@ -47,6 +47,8 @@ namespace F_Delegation_event_
             var timer = new Timer();
             // и у него есть событие Elapsed
             timer.Elapsed += Timer_Elapsed;
+            timer.Interval = 5000;
+            timer.Start();
 
 
             
@@ -69,7 +71,9 @@ namespace F_Delegation_event_
         // обработчик события
         private static void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            var timer = (Timer)sender;
+            //var timer = (Timer)sender;
+
+            Console.WriteLine("Handling Timer Elapsed Event");
         }
 
         private static void HandleOnTooFast(object obj, int speed)
